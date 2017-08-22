@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sea Webcams Fabietto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I=" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/8da629821d.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.17.1/URI.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" onclick="window.location.reload()">Sea Webcams&nbsp;<i class="fa fa-refresh" aria-hidden="true"></i> (autorefresh <span id="countdown"></span>)</a>
+            </div>            
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 60px;" data-bind="foreach: images">            
+            <div class="col-xs-12 col-sm-4">
+                <span data-bind="text: name"></span>
+                <img src="#" data-bind="attr: { src: url }" class="img-responsive"/>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">By Fabietto 2017</span>
+      </div>
+    </footer>
+</body>
+<script type="text/javascript" charset="utf-8">
+
+    function WebCamViewModel() {
+        var self = this;
+        self.name = ko.observable();        
+        self.url = ko.observable();        
+    };
+
+    function ImagesViewModel() {
+        var self = this;
+        self.images = ko.observableArray([]);
+    };
+
+    var globalModel = new ImagesViewModel();
+    $(document).ready(function () {
+        var d = new Date();
+        ko.applyBindings(globalModel);
+
+        var salivoli = new  WebCamViewModel();
+        salivoli.name("Salivoli");
+        salivoli.url("http://meteosalivoli.altervista.org/webcam.jpg?"+d.getTime());
+        globalModel.images.push(salivoli);
+
+        var riotorto = new  WebCamViewModel();
+        riotorto.name("Riotorto");
+        riotorto.url("http://91.214.62.146:555/mjpeg.cgi?user=utente&password=utente&dummy=1474381414034&"+d.getTime());
+        globalModel.images.push(riotorto);
+
+        var follonica = new  WebCamViewModel();
+        follonica.name("Follonica");
+        follonica.url("http://www.gvlnifollonica.it/gvcam.jpg?"+d.getTime());
+        globalModel.images.push(follonica);
+
+        var marinadiCampo = new  WebCamViewModel();
+        marinadiCampo.name("Marina di Campo");
+        marinadiCampo.url("https://cam.elbalink.it/webcam_spiaggia_marina_di_campo/camping_del_mare.jpg?"+d.getTime());
+        globalModel.images.push(marinadiCampo);
+
+        var fetovaia = new  WebCamViewModel();
+        fetovaia.name("Fetovaia");
+        fetovaia.url("http://www.elbalink.it/webcam/webcamview.php?n=18&"+d.getTime());
+        globalModel.images.push(fetovaia);
+
+        var capoliveri = new  WebCamViewModel();
+        capoliveri.name("Capoliveri");
+        capoliveri.url("http://www.lascogliera.com/webcam/webcam.php?"+d.getTime());
+        globalModel.images.push(capoliveri);
+
+    });
+
+    (function countdown(remaining) {
+    if(remaining === 0)
+        location.reload(true);
+    	document.getElementById('countdown').innerHTML = remaining;
+    	setTimeout(function(){ countdown(remaining - 1); }, 1000);
+	})(30);
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-101965601-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html>
