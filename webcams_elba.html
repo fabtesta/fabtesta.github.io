@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <title>Sea Webcams Fabietto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-1.12.1.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I=" crossorigin="anonymous"></script>
-    <script src="https://use.fontawesome.com/8da629821d.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />    
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha256-ZT4HPpdCOt2lvDkXokHuhJfdOKSPFLzeAJik5U/Q+l4=" crossorigin="anonymous" />
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" integrity="sha256-owX7sroiO/O1a7h3a4X29A1g3QgqdNvijRQ7V5TH45M=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.17.1/URI.js"></script>
 </head>
 <body>
@@ -33,27 +32,16 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="margin-top: 60px;" data-bind="foreach: iframes">            
             <div class="col-xs-12 col-sm-4">
-                <span>Vento e mare</span>
+                <span data-bind="text: name"></span>
                 <div align="center">
-                    <iframe class="embed-responsive-item" src="http://www.lamma.rete.toscana.it/previ/ita/widget_mare_300.php?area=L" width="300" height="695" frameBorder="0" scrolling="no" align="center"></iframe>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <span>Previsioni costa</span>
-                <div align="center">
-                    <iframe src="http://www.lamma.rete.toscana.it/widget/render?tpl=6&sez=2&color=0" width="300" height="695" frameBorder="0" scrolling="no" align="center"></iframe>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <span>Previsioni Piombino</span>
-                <div align="center">
-                    <iframe src="http://www.lamma.rete.toscana.it/widget/render?sez=piombino.xml&tpl=13&color=0" width="300" height="695" frameBorder="0" scrolling="no"></iframe>
-                </div>
+                    <iframe data-bind="attr: { src: url, width: width, height: height}" src="http://" frameBorder="0" scrolling="no"></iframe>
+                </div>                
             </div>
         </div>
-    </div>    
+    </div> 
+    
     <footer class="footer">
       <div class="container">
         <span class="text-muted">By Fabietto 2017</span>
@@ -65,12 +53,16 @@
     function WebCamViewModel() {
         var self = this;
         self.name = ko.observable();        
-        self.url = ko.observable();        
+        self.url = ko.observable();   
+
+        self.width = ko.observable(); 
+        self.height = ko.observable();             
     };
 
     function ImagesViewModel() {
         var self = this;
         self.images = ko.observableArray([]);
+        self.iframes = ko.observableArray([]);
     };
 
     var globalModel = new ImagesViewModel();
@@ -107,6 +99,27 @@
         capoliveri.name("Capoliveri");
         capoliveri.url("http://www.lascogliera.com/webcam/webcam.php?"+d.getTime());
         globalModel.images.push(capoliveri);
+
+        var ventoeMare = new  WebCamViewModel();
+        ventoeMare.name("Vento e mare");
+        ventoeMare.url("http://www.lamma.rete.toscana.it/previ/ita/widget_mare_300.php?area=L");
+        ventoeMare.width(300);
+        ventoeMare.height(695);
+        globalModel.iframes.push(ventoeMare);
+
+        var previsioniCosta = new  WebCamViewModel();
+        previsioniCosta.name("Previsioni costa");
+        previsioniCosta.url("http://www.lamma.rete.toscana.it/widget/render?tpl=6&sez=2&color=0");
+        previsioniCosta.width(300);
+        previsioniCosta.height(695);
+        globalModel.iframes.push(previsioniCosta);
+
+        var previsioniPiombino = new  WebCamViewModel();
+        previsioniPiombino.name("Previsioni Piombino");
+        previsioniPiombino.url("http://www.lamma.rete.toscana.it/widget/render?sez=piombino.xml&tpl=13&color=0");
+        previsioniPiombino.width(300);
+        previsioniPiombino.height(695);
+        globalModel.iframes.push(previsioniPiombino);
 
     });
 
