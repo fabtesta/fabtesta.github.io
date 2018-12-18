@@ -13,13 +13,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js" integrity="sha256-owX7sroiO/O1a7h3a4X29A1g3QgqdNvijRQ7V5TH45M=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.17.1/URI.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.2.89/css/materialdesignicons.min.css">
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" onclick="window.location.reload()">Snow Webcams&nbsp;<i class="fa fa-refresh" aria-hidden="true"></i> (autorefresh <span id="countdown"></span>)</a>
-            </div>            
+                <a class="navbar-brand" href="#" onclick="window.location.reload()">Snow Webcams&nbsp;(autorefresh)</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#" data-bind="click: togglePlayPause"><i data-bind="css: countdownStatus" aria-hidden="true"></i></a></li>
+              <li><a href="#"><span data-bind="text: countdownText"></span></a></li>
+            </ul>        
         </div>
     </nav>
     <div class="container-fluid">
@@ -44,7 +50,7 @@
 
     <footer class="footer">
       <div class="container">
-        <span class="text-muted">By Fabietto 2017</span>
+        <span class="text-muted">By Fabietto 2018</span>
       </div>
     </footer>
 </body>
@@ -63,6 +69,17 @@
         var self = this;
         self.images = ko.observableArray([]);
         self.iframes = ko.observableArray([]);
+
+        self.pause = ko.observable(false);
+        self.countdownStatus = ko.pureComputed(function() {
+            return self.pause() ? "mdi mdi-play" : "mdi mdi-pause";
+        });
+
+        self.togglePlayPause = function(){
+            self.pause(!self.pause());
+        };
+
+        self.countdownText = ko.observable("");
     };
 
     var globalModel = new ImagesViewModel();
@@ -141,8 +158,16 @@
     (function countdown(remaining) {
     if(remaining === 0)
         location.reload(true);
-        document.getElementById('countdown').innerHTML = remaining;
-        setTimeout(function(){ countdown(remaining - 1); }, 1000);
+        globalModel.countdownText(remaining);
+        setTimeout(function(){
+            if(!globalModel.pause())
+            {
+                countdown(remaining - 1);
+            }
+            else{
+                countdown(remaining);
+            }
+        }, 1000);
     })(30);
 </script>
 
