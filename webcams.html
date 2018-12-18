@@ -70,13 +70,13 @@
         var d = new Date();
         ko.applyBindings(globalModel);
         var piazzetta = new  WebCamViewModel();
-        piazzetta.name("Piazzetta");
-        piazzetta.url("http://www.montagnapistoiese.info/webcam/abetone/lat001t.jpg?"+d.getTime());
+        piazzetta.name("Piramidi");
+        piazzetta.url("https://www.finocam.it/webcam/abetone-bv-ok.jpg?"+d.getTime());
         globalModel.images.push(piazzetta);
 
         var gomito = new  WebCamViewModel();
         gomito.name("Gomito");
-        gomito.url("http://www.nonsoloimmobili.com/upload/files/webcam.jpg?1418713558481?"+d.getTime());
+        gomito.url("http://www.nonsoloimmobili.com/upload/files/webcam.jpg?1418713558481="+d.getTime());
         globalModel.images.push(gomito);
 
         var valdiluce = new  WebCamViewModel();
@@ -89,6 +89,16 @@
         sprella.url("http://www.montagnapistoiese.info/webcam/sprella-valdiluce.jpg?"+d.getTime());
         globalModel.images.push(sprella);
 
+        var valdiluce1 = new  WebCamViewModel();
+        valdiluce1.name("Val di Luce - Pionieri");
+        valdiluce1.url("https://www.finocam.it/webcam/valdiluce-piste-ok.jpg?"+d.getTime());
+        globalModel.images.push(valdiluce1);
+
+        var panoramaCimone = new  WebCamViewModel();
+        panoramaCimone.name("Panorama - Cimone");
+        panoramaCimone.url("https://www.cimonesci.it/cams/panorama.jpg?"+d.getTime());
+        globalModel.images.push(panoramaCimone);
+
         var polle = new  WebCamViewModel();
         polle.name("Polle");
         polle.url("https://www.cimonesci.it/cams/polle.jpg?"+d.getTime());
@@ -99,25 +109,32 @@
         cimoncino.url("https://www.cimonesci.it/cams/cimoncino.jpg?"+d.getTime());
         globalModel.images.push(cimoncino);
 
+        var passodellupo = new  WebCamViewModel();
+        passodellupo.name("Passo del Lupo");
+        passodellupo.url("https://www.cimonesci.it/cams/funivia.jpg?"+d.getTime());
+        globalModel.images.push(passodellupo);
+
+
         var previsioneToscana = new  WebCamViewModel();
-        previsioneToscana.name("Toscana");
-        previsioneToscana.url("http://www.lamma.rete.toscana.it/widget/render?tpl=1&color=0");
-        previsioneToscana.width(300);
-        previsioneToscana.height(380);
+        previsioneToscana.name("Altezza neve");
+        previsioneToscana.url("https://embed.windy.com/embed2.html?lat=44.131&lon=10.659&zoom=11&level=surface&overlay=snowcover&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&detailLat=43.779&detailLon=11.246&metricWind=kt&metricTemp=%C2%B0C&radarRange=-1");
+        previsioneToscana.width("100%");
+        previsioneToscana.height(400);
         globalModel.iframes.push(previsioneToscana);
 
         var appenninoPistoiese = new  WebCamViewModel();
-        appenninoPistoiese.name("Appennino pistoiese");
-        appenninoPistoiese.url("http://www.lamma.rete.toscana.it/widget/render?tpl=7&sez=2&color=0");
-        appenninoPistoiese.width(300);
-        appenninoPistoiese.height(830);
+        appenninoPistoiese.name("Temperature");
+        appenninoPistoiese.url("https://embed.windy.com/embed2.html?lat=44.131&lon=10.659&zoom=11&level=surface&overlay=temp&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&detailLat=43.779&detailLon=11.246&metricWind=kt&metricTemp=%C2%B0C&radarRange=-1");
+        appenninoPistoiese.width("100%");
+        appenninoPistoiese.height(400);
         globalModel.iframes.push(appenninoPistoiese);
 
+
         var previsioniAbetone = new  WebCamViewModel();
-        previsioniAbetone.name("Previsioni Abetone");
-        previsioniAbetone.url("http://www.lamma.rete.toscana.it/widget/render?sez=abetone.xml&tpl=13&color=0");
-        previsioniAbetone.width(300);
-        previsioniAbetone.height(695);
+        previsioniAbetone.name("Precipitazioni");
+        previsioniAbetone.url("https://embed.windy.com/embed2.html?lat=44.131&lon=10.659&zoom=11&level=surface&overlay=ptype&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&detailLat=43.779&detailLon=11.246&metricWind=kt&metricTemp=%C2%B0C&radarRange=-1");
+        previsioniAbetone.width("100%");
+        previsioniAbetone.height(400);
         globalModel.iframes.push(previsioniAbetone);
     });
 
