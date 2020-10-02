@@ -71,13 +71,13 @@
         ko.applyBindings(globalModel);
 
         var salivoli = new  WebCamViewModel();
-        salivoli.name("Salivoli");
-        salivoli.url("http://meteosalivoli.altervista.org/webcam2.jpg?"+d.getTime());
+        salivoli.name("Le Ghiaie (Portoferraio)");
+        salivoli.url("https://dati.infoelba.it/api/v1/webcams/images/2?"+d.getTime());
         globalModel.images.push(salivoli);
 
         var riotorto = new  WebCamViewModel();
-        riotorto.name("Portoferraio");
-        riotorto.url("http://www.elbalink.it/webcam/webcamview.php?n=1&"+d.getTime());
+        riotorto.name("Lacona");
+        riotorto.url("https://dati.infoelba.it/api/v1/webcams/images/9?"+d.getTime());
         globalModel.images.push(riotorto);
 
         var follonica = new  WebCamViewModel();
@@ -91,13 +91,13 @@
         globalModel.images.push(marinadiCampo);
 
         var fetovaia = new  WebCamViewModel();
-        fetovaia.name("Fetovaia");
-        fetovaia.url("http://www.elbalink.it/webcam/webcamview.php?n=18&"+d.getTime());
+        fetovaia.name("Capoliveri");
+        fetovaia.url("https://dati.infoelba.it/api/v1/webcams/images/8?"+d.getTime());
         globalModel.images.push(fetovaia);
 
         var capoliveri = new  WebCamViewModel();
-        capoliveri.name("Capoliveri");
-        capoliveri.url("http://www.lascogliera.com/webcam/webcam.php?"+d.getTime());
+        capoliveri.name("Biodola");
+        capoliveri.url("https://dati.infoelba.it/api/v1/webcams/images/16?"+d.getTime());
         globalModel.images.push(capoliveri);
 
         var ventoeMare = new  WebCamViewModel();
