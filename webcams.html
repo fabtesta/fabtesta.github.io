@@ -32,7 +32,7 @@
         <div class="row" style="margin-top: 60px;" data-bind="foreach: images">            
             <div class="col-xs-12 col-sm-4">
                 <span data-bind="text: name"></span>
-                <img src="#" data-bind="attr: { src: url }" class="img-responsive" referrerpolicy="no-referrer"/>
+                <img src="#" data-bind="attr: { src: url }" class="img-responsive" referrerpolicy="no-referrer" style="width: 100%;"/>
             </div>
         </div>
     </div> 
@@ -87,33 +87,33 @@
         var d = new Date();
         ko.applyBindings(globalModel);
         var piazzetta = new  WebCamViewModel();
-        piazzetta.name("Piramidi");
-        piazzetta.url("https://www.finocam.it/webcam/abetone-bv-ok.jpg?"+d.getTime());
+        piazzetta.name("Piazza");
+        piazzetta.url("https://paesaggidigitali.it/webcam/abetone.jpg?"+d.getTime());
         globalModel.images.push(piazzetta);
 
         var gomito = new  WebCamViewModel();
-        gomito.name("Gomito");
-        gomito.url("http://www.nonsoloimmobili.com/upload/files/webcam.jpg?1418713558481="+d.getTime());
+        gomito.name("Piramidi");
+        gomito.url("https://paesaggidigitali.it/webcam/abetone-bv.jpg?"+d.getTime());
         globalModel.images.push(gomito);
 
         var valdiluce = new  WebCamViewModel();
         valdiluce.name("Val di Luce");
-        valdiluce.url("http://www.meteo-system.com/stazioni/valdiluce.jpg?"+d.getTime());
+        valdiluce.url("https://paesaggidigitali.it/webcam/valdiluce.jpg?"+d.getTime());
         globalModel.images.push(valdiluce);
 
         var sprella = new  WebCamViewModel();
-        sprella.name("Sprella");
-        sprella.url("http://www.montagnapistoiese.info/webcam/sprella-valdiluce.jpg?"+d.getTime());
+        sprella.name("Annibale");
+        sprella.url("https://paesaggidigitali.it/webcam/valdiluce-piste.jpg?"+d.getTime());
         globalModel.images.push(sprella);
 
         var valdiluce1 = new  WebCamViewModel();
-        valdiluce1.name("Val di Luce - Pionieri");
-        valdiluce1.url("https://www.finocam.it/webcam/valdiluce-piste-ok.jpg?"+d.getTime());
+        valdiluce1.name("Campo scuola");
+        valdiluce1.url("http://embed.skylinewebcams.com/media.php?id=820&w=400&t="+d.getTime());
         globalModel.images.push(valdiluce1);
 
         var panoramaCimone = new  WebCamViewModel();
-        panoramaCimone.name("Panorama - Cimone");
-        panoramaCimone.url("https://www.cimonesci.it/cams/panorama.jpg?"+d.getTime());
+        panoramaCimone.name("Ovovia");
+        panoramaCimone.url("http://www.skylinewebcams.com/media.php?id=64&w=400&t="+d.getTime());
         globalModel.images.push(panoramaCimone);
 
         var polle = new  WebCamViewModel();
